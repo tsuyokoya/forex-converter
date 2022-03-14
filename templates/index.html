@@ -4,9 +4,38 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Exchange Rate Converter</title>
+    <title>{% block title %}Exchange Rate Converter{% endblock %}</title>
   </head>
   <body>
-    <h1>Hello!</h1>
+    <h1>Fx Rate Converter</h1>
+    {% block content %}
+    <form action="/convert" method="POST">
+      <div class="form-control">
+        <label for="convert-from">Convert from: </label>
+        <input
+          type="text"
+          id="convert-from"
+          name="convert-from"
+          placeholder="USD"
+        />
+      </div>
+      <div class="form-control">
+        <label for="convert-to">Convert to: </label>
+        <input
+          type="text"
+          id="convert-to"
+          name="convert-to"
+          placeholder="GBP"
+        />
+      </div>
+      <div class="form-control">
+        <label for="amount">Amount: </label>
+        <input type="text" id="amount" name="amount" placeholder="100" />
+      </div>
+      <div class="form-control">
+        <button id="submit-btn">Convert</button>
+      </div>
+    </form>
+    {% endblock %}
   </body>
 </html>
