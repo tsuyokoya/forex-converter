@@ -1,15 +1,11 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, flash
 from flask_debugtoolbar import DebugToolbarExtension
-from functions import convert_currency, get_currency_code
+from functions import convert_currency, get_currency_code, validate_inputs
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'something'
 debug = DebugToolbarExtension(app)
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
-
-# session['converted_amount'] = ''
-# session['converted_amount_symbol'] = ''
-
 
 @app.route('/')
 def show_home_page():
@@ -18,18 +14,23 @@ def show_home_page():
 
 @app.route('/convert',methods=['POST'])
 def get_currency_data():
-  """Converts amount to correct currency amount"""
-  from_fx = request.form["convert-from"]
-  to_fx = request.form["convert-to"]
-  amount = request.form["amount"]
-  print(from_fx,to_fx,amount)
+  """Stores result currency amount and gets currency symbol"""
+  from_fx = request.form.get("convert-from")
+  to_fx = request.form.get("convert-to")
+  amount = request.form.get("amount")
 
-  result_amount = convert_currency(from_fx,to_fx,amount)
-  result_symbol = get_currency_code(to_fx)
+  are_proper_fx_names = validate_inputs(from_fx,to_fx)
 
-  session['converted_amount'] = result_amount
-  session['converted_amount_symbol'] = result_symbol
-  return redirect('/result')
+  if not are_proper_fx_names:
+    flash('Please enter a valid 3 letter currency code. For example: JPY','error')
+    return redirect('/')
+  else:
+    result_amount = convert_currency(from_fx,to_fx,amount)
+    result_symbol = get_currency_code(to_fx)
+
+    session['converted_amount'] = result_amount
+    session['converted_amount_symbol'] = result_symbol
+    return redirect('/result')
 
 @app.route('/result')
 def show_result():
