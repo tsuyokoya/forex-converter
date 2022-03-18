@@ -1,14 +1,7 @@
-# Connect Four Game
+# Flask Foreign Currency Converter
 
-<img src='./sampleConnectFour.gif' alt='Connect Four Gif' height='350' width='500'>
+<img src='./fxconverter.png' alt='currency converter screenshot' height='350' width='500'>
 
 ## 🧐 Project Description
 
-One of my favorite games growing up! This is a connect four project that I created using vanilla JavaScript with ES6 syntax.
-
-### **How to Play:**
-
-- Enter you and your opponent's names in the input fields and submit. This step is optional as each players' names default to "Player 1" and "Player 2" if the input fields are left blank.
-- Click on any of the circles in the top-most row to drop a piece.
-- Click on the "New Game" button to reset the board.
-- For Lord of the Rings fans, see what happens when you click on the "LoTR Version" button 👀
+A simple currency converter using the forex-python module. By specifying the currency to convert from, the currency to convert to, and the amount to convert, this converter will tell you the input amount in the desired currency's amount. 
