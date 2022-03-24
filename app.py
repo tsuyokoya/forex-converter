@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, redirect, session, flash
 from flask_debugtoolbar import DebugToolbarExtension
 from functions import convert_currency, get_currency_code, validate_inputs
+import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'something'
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 debug = DebugToolbarExtension(app)
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 
