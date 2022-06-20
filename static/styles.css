@@ -83,6 +83,17 @@ input {
   -webkit-text-stroke: 2px rgb(255, 225, 0);
 }
 
+.error {
+  color: red;
+  font-size: 2em;
+  text-align: center;
+}
+
+.result {
+  color: rgb(255, 225, 0);
+  -webkit-text-stroke: 3px black;
+}
+
 @media screen and (max-width: 1067px) {
   .form-control {
     display: flex;
