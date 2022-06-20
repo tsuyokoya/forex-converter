@@ -18,8 +18,8 @@ def show_home_page():
 @app.route("/convert", methods=["POST"])
 def get_currency_data():
     """Stores result currency amount and gets currency symbol"""
-    from_fx = request.form.get("convert-from")
-    to_fx = request.form.get("convert-to")
+    from_fx = request.form.get("convert-from").upper()
+    to_fx = request.form.get("convert-to").upper()
     amount = request.form.get("amount")
 
     are_proper_fx_names = validate_inputs(from_fx, to_fx)
